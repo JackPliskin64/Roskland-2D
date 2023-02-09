@@ -18,6 +18,8 @@ public class GameController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        FightersDB.Init();
+        MovesDB.Init();
         ConditionsDB.Init();
     }
 

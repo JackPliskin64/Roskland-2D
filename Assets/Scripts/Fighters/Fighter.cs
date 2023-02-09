@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,6 +66,45 @@ public class Fighter
         Status = null;
         VolatileStatus = null;
 
+    }
+
+    public Fighter (FighterSaveData saveData)
+    {
+        _base = FightersDB.GetFighterByName(saveData.name);
+        HP = saveData.hp;
+        level = saveData.level;
+        Exp = saveData.exp;
+
+        if(saveData.statusId != null)
+        {
+            Status = ConditionsDB.Conditions[saveData.statusId.Value];
+        }
+        else
+        {
+            Status = null;
+        }
+
+        Moves = saveData.moves.Select(s => new Move(s)).ToList();
+
+        CalculateStats();
+        StatusChanges = new Queue<string>();
+        ResetStatBoosts();
+        VolatileStatus = null;
+
+    }
+    public FighterSaveData GetSaveData()
+    {
+        var saveData = new FighterSaveData()
+        {
+            name = Base.FighterName,
+            hp = HP,
+            level = Level,
+            exp = Exp,
+            statusId = Status?.Id,
+            moves = Moves.Select(m => m.GetSaveData()).ToList(),
+        };
+
+        return saveData;
     }
 
     void CalculateStats()
@@ -180,7 +220,7 @@ public class Fighter
     public DamageDetails TakeDamage(Move move, Fighter attacker)
     {
         float critical = 1f;
-        if(Random.value * 100 <= 6.25f)
+        if(UnityEngine.Random.value * 100 <= 6.25f)
         {
             critical = 2f;
         }
@@ -196,7 +236,7 @@ public class Fighter
         float attack = (move.Base.Category == MoveBase.MoveCategory.Especial) ? attacker.SpAttack : attacker.Attack;
         float deffense = (move.Base.Category == MoveBase.MoveCategory.Especial) ? attacker.SpDeffense : Deffense;
 
-        float modifiers = Random.Range(0.85f, 1f) * type * critical;
+        float modifiers = UnityEngine.Random.Range(0.85f, 1f) * type * critical;
         float a = (2 * attacker.Level + 10) / 250f;
         float d = a * move.Base.Power * ((float)attack / deffense) + 2;
         int damage = Mathf.FloorToInt(d * modifiers);
@@ -245,7 +285,7 @@ public class Fighter
     public Move GetRandomMove()
     {
         var movesWithPP = Moves.Where(x => x.PP > 0).ToList();
-        int r = Random.Range(0, movesWithPP.Count);
+        int r = UnityEngine.Random.Range(0, movesWithPP.Count);
         return movesWithPP[r];
     }
 
@@ -289,4 +329,15 @@ public class DamageDetails
     public bool Fainted { get; set; }
     public float Critical { get; set; }
     public float TypeEffectiveness { get; set; }
+}
+
+[Serializable]
+public class FighterSaveData
+{
+    public string name;
+    public int hp;
+    public int level;
+    public int exp;
+    public ConditionID? statusId;
+    public List<MoveSaveData> moves;
 }
