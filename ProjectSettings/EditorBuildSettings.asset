@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Juego.unity
+    path: Assets/Scenes/Colon.unity
     guid: 17607dfae48abfd47ad1a43717c49427
   - enabled: 1
     path: Assets/Scenes/Colegio.unity
