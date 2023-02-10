@@ -62,7 +62,6 @@ public class PlayerController : MonoBehaviour
             var triggerable = collider.GetComponent<IPlayerTriggerable>();
             if (triggerable != null)
             {
-                character.Animator.isMoving = false;
                 triggerable.OnPlayerTriggered(this);
                 break;
             }
