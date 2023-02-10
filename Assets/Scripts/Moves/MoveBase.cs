@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "MoveBase", menuName = "Move/Crear nuevo movimiento")]
 public class MoveBase : ScriptableObject
 {
-    [SerializeField] string moveName;
+    public string moveName;
 
     [TextArea]
     [SerializeField] string description;
