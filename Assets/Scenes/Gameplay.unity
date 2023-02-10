@@ -210,10 +210,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EssentialObjectsLoader
       objectReference: {fileID: 0}
-    - target: {fileID: 3771885431531260368, guid: d074f1138c61b974796ee32ab8bdbb58, type: 3}
-      propertyPath: offset.y
-      value: -5
-      objectReference: {fileID: 0}
     - target: {fileID: 3771885431531260369, guid: d074f1138c61b974796ee32ab8bdbb58, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -353,7 +349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 930ab42c7c8235840b941b38329006d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7823042257317980385
+--- !u!114 &7823042257317980382
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

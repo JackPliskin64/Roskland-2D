@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea66ede743916b041a3cec20ece2d51a, type: 3}
+  m_Name: DONJU
+  m_EditorClassIdentifier: 
+  fighterName: "Don Juli\xE1n"
+  description: 
+  sprite: {fileID: 21300000, guid: 3f745917010293448a1060e717616c96, type: 3}
+  fighterType1: 0
+  fighterType2: 3
+  maxHp: 105
+  attack: 150
+  deffense: 90
+  spAttack: 150
+  spDeffense: 90
+  speed: 95
+  expYield: 100
+  growthRate: 0
+  catchRate: 255
+  learnableMoves:
+  - moveBase: {fileID: 11400000, guid: 6c3f15a7e3a34c44b84cc61f19ce32c7, type: 2}
+    level: 1
