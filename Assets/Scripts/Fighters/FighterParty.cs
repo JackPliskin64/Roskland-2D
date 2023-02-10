@@ -7,7 +7,7 @@ public class FighterParty : MonoBehaviour
 {
     [SerializeField] List<Fighter> fighters;
 
-    public List<Fighter> Fighters { get { return fighters; } set { fighters = value; } }
+    public List<Fighter> Fighters { get { return fighters; } }
 
     private void Start()
     {

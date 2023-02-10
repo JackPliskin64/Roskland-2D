@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 5793624128948947382}
   - component: {fileID: 5793624128948947383}
   - component: {fileID: 5793624128948947385}
-  - component: {fileID: -4608487761555021956}
   m_Layer: 7
   m_Name: Donju
   m_TagString: Untagged
@@ -203,19 +202,6 @@ MonoBehaviour:
     level: 1
   - _base: {fileID: 11400000, guid: b437f1eb41b725140b2a461c6d1b2ec7, type: 2}
     level: 99
---- !u!114 &-4608487761555021956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5793624128948947376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4881f89f8b930e34489bbb86116ccd4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uniqueId: 
 --- !u!1 &5793624129241033441
 GameObject:
   m_ObjectHideFlags: 0

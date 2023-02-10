@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrainerController : MonoBehaviour, Interactable, ISavable
+public class TrainerController : MonoBehaviour, Interactable
 {
     [SerializeField] string trainerName;
     [SerializeField] Sprite sprite;
@@ -89,21 +89,6 @@ public class TrainerController : MonoBehaviour, Interactable, ISavable
         }
 
         fov.transform.eulerAngles = new Vector3(0f, 0f, angle); 
-    }
-
-    public object CaptureState()
-    {
-        return battleLost;
-    }
-
-    public void RestoreState(object state)
-    {
-        battleLost = (bool)state;
-
-        if (battleLost)
-        {
-            fov.gameObject.SetActive(false);
-        }
     }
 
     public string Name { get => trainerName; }

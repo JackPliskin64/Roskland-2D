@@ -22,8 +22,6 @@ public class GameController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        FightersDB.Init();
-        MovesDB.Init();
         ConditionsDB.Init();
     }
 
@@ -109,16 +107,6 @@ public class GameController : MonoBehaviour
         if (state == GameState.FreeRoam)
         {
             playerController.HandleUpdate();
-
-            if (Input.GetKeyDown(KeyCode.G))
-            {
-                SavingSystem.i.Save("saveSlot1");
-            }
-
-            if (Input.GetKeyDown(KeyCode.C))
-            {
-                SavingSystem.i.Load("saveSlot1");
-            }
         }
 
         else if (state == GameState.Battle)
@@ -130,7 +118,6 @@ public class GameController : MonoBehaviour
         {
             DialogManager.Instance.HandleUpdate();
         }
-
     }
 
     public void SetCurrentScene(SceneDetails currScene)
