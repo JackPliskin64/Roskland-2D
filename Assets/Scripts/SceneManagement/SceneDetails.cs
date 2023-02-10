@@ -12,6 +12,7 @@ public class SceneDetails : MonoBehaviour
         if(collision.tag == "Player")
         {
             Debug.Log($"Has entrado a {gameObject.name}");
+
             LoadScene();
             GameController.Instance.SetCurrentScene(this);
 
@@ -47,7 +48,7 @@ public class SceneDetails : MonoBehaviour
     }
     public void UnloadScene()
     {
-        if (!IsLoaded)
+        if (IsLoaded)
         {
             SceneManager.UnloadSceneAsync(gameObject.name);
             IsLoaded = false;

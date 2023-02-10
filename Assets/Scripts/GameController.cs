@@ -62,7 +62,7 @@ public class GameController : MonoBehaviour
         worldCamera.gameObject.SetActive(false);
 
         var playerParty = playerController.GetComponent<FighterParty>();
-        var wildFighter = FindObjectOfType<MapArea>().GetComponent<MapArea>().GetRandomWildFighter();
+        var wildFighter = CurrentScene.GetComponent<MapArea>().GetComponent<MapArea>().GetRandomWildFighter();
 
         var wildFighterCopy = new Fighter(wildFighter.Base, wildFighter.Level);
 

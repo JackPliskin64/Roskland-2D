@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7823042258725827083}
   - component: {fileID: 7823042258725827082}
+  - component: {fileID: 6888921567181581729}
   m_Layer: 0
   m_Name: SceneTrigger
   m_TagString: Untagged
@@ -45,7 +46,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.1994324, y: 4.060482}
+  m_Offset: {x: -0.5126648, y: -9.894104}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -56,5 +57,19 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 125.85989, y: 116.04705}
+  m_Size: {x: 346.32782, y: 273.22778}
   m_EdgeRadius: 0
+--- !u!114 &6888921567181581729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7823042258725827081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 930ab42c7c8235840b941b38329006d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connectedScenes:
+  - {fileID: 0}
