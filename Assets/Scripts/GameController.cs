@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public enum GameState { FreeRoam, Battle, Dialog, Cutscene, Paused }
-public class GameController : MonoBehaviour, ISavable
+public class GameController : MonoBehaviour
 {
     [SerializeField] PlayerController playerController;
     [SerializeField] BattleSystem battleSystem;
