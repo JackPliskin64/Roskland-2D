@@ -112,12 +112,12 @@ public class GameController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.G))
             {
-                SavingSystem.i.Save("saveSlot1");
+                SavingSystem.instance.Save("saveSlot1");
             }
 
             if (Input.GetKeyDown(KeyCode.C))
             {
-                SavingSystem.i.Load("saveSlot1");
+                SavingSystem.instance.Load("saveSlot1");
             }
         }
 

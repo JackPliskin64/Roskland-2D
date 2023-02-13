@@ -8,10 +8,10 @@ using UnityEngine.SceneManagement;
 
 public class SavingSystem : MonoBehaviour
 {
-    public static SavingSystem i { get; private set; }
+    public static SavingSystem instance { get; private set; }
     private void Awake()
     {
-        i = this;
+        instance = this;
     }
 
     Dictionary<string, object> gameState = new Dictionary<string, object>();
