@@ -27,9 +27,9 @@ public class SceneDetails : MonoBehaviour
 
             //Unload scenes that are no longer connected
             var prevScene = GameController.Instance.PrevScene;
-            if (GameController.Instance.PrevScene != null)
+            if (prevScene != null)
             {
-                var previouslyLoadedScenes = GameController.Instance.PrevScene.connectedScenes;
+                var previouslyLoadedScenes = prevScene.connectedScenes;
                 foreach (var scene in previouslyLoadedScenes)
                 {
                     if (!connectedScenes.Contains(scene) && scene != this)
@@ -67,7 +67,6 @@ public class SceneDetails : MonoBehaviour
     {
         if (IsLoaded)
         {
-
             SavingSystem.instance.CaptureEntityStates(savableEntities);
 
             SceneManager.UnloadSceneAsync(gameObject.name);
