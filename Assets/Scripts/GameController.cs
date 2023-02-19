@@ -16,12 +16,15 @@ public class GameController : MonoBehaviour
     public SceneDetails CurrentScene { get; private set; }
     public SceneDetails PrevScene { get; private set; }
 
-
+    MenuController menuController;
     public static GameController Instance { get; private set; }
 
     private void Awake()
     {
         Instance = this;
+
+        menuController = GetComponent<MenuController>();
+
         FightersDB.Init();
         MovesDB.Init();
         ConditionsDB.Init();
@@ -109,6 +112,11 @@ public class GameController : MonoBehaviour
         if (state == GameState.FreeRoam)
         {
             playerController.HandleUpdate();
+
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                menuController.OpenMenu();
+            }
 
             if (Input.GetKeyDown(KeyCode.G))
             {
