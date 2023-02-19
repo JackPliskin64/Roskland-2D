@@ -135,7 +135,7 @@ public class GameController : MonoBehaviour
 
     public void SetCurrentScene(SceneDetails currScene)
     {
-        PrevScene = currScene;
+        PrevScene = CurrentScene;
         CurrentScene = currScene;
     }
 }

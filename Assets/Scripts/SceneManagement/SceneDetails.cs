@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -27,18 +28,24 @@ public class SceneDetails : MonoBehaviour
 
             //Unload scenes that are no longer connected
             var prevScene = GameController.Instance.PrevScene;
+
             if (prevScene != null)
             {
                 var previouslyLoadedScenes = prevScene.connectedScenes;
+
                 foreach (var scene in previouslyLoadedScenes)
                 {
                     if (!connectedScenes.Contains(scene) && scene != this)
                     {
+                        Debug.Log("About to unload: " + scene.gameObject.name);
+
                         scene.UnloadScene();
                     }
                 }
                  if (!connectedScenes.Contains(prevScene))
                 {
+                    Debug.Log("About to unload: " + prevScene.gameObject.name);
+
                     prevScene.UnloadScene();
                 }
 

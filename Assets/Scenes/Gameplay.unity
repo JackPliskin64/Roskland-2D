@@ -207,9 +207,29 @@ PrefabInstance:
       propertyPath: connectedScenes.Array.data[0]
       value: 
       objectReference: {fileID: 7823042257317980381}
+    - target: {fileID: 6888921567181581729, guid: 44c59de523c7cc64bac159cd9a35ef61, type: 3}
+      propertyPath: connectedScenes.Array.data[1]
+      value: 
+      objectReference: {fileID: 564199734}
     - target: {fileID: 7823042258725827081, guid: 44c59de523c7cc64bac159cd9a35ef61, type: 3}
       propertyPath: m_Name
       value: Colegio
+      objectReference: {fileID: 0}
+    - target: {fileID: 7823042258725827082, guid: 44c59de523c7cc64bac159cd9a35ef61, type: 3}
+      propertyPath: m_Size.x
+      value: 186.49782
+      objectReference: {fileID: 0}
+    - target: {fileID: 7823042258725827082, guid: 44c59de523c7cc64bac159cd9a35ef61, type: 3}
+      propertyPath: m_Size.y
+      value: 112.25616
+      objectReference: {fileID: 0}
+    - target: {fileID: 7823042258725827082, guid: 44c59de523c7cc64bac159cd9a35ef61, type: 3}
+      propertyPath: m_Offset.x
+      value: 37.161552
+      objectReference: {fileID: 0}
+    - target: {fileID: 7823042258725827082, guid: 44c59de523c7cc64bac159cd9a35ef61, type: 3}
+      propertyPath: m_Offset.y
+      value: 15.792828
       objectReference: {fileID: 0}
     - target: {fileID: 7823042258725827083, guid: 44c59de523c7cc64bac159cd9a35ef61, type: 3}
       propertyPath: m_RootOrder
@@ -281,9 +301,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6888921567181581729, guid: 44c59de523c7cc64bac159cd9a35ef61, type: 3}
+      propertyPath: connectedScenes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6888921567181581729, guid: 44c59de523c7cc64bac159cd9a35ef61, type: 3}
       propertyPath: connectedScenes.Array.data[0]
       value: 
       objectReference: {fileID: 564199734}
+    - target: {fileID: 6888921567181581729, guid: 44c59de523c7cc64bac159cd9a35ef61, type: 3}
+      propertyPath: connectedScenes.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7823042258725827081, guid: 44c59de523c7cc64bac159cd9a35ef61, type: 3}
       propertyPath: m_Name
       value: Colon
