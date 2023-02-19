@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class MenuController : MonoBehaviour
 {
     [SerializeField] GameObject menu;
+
+    public event Action<int> onMenuSelected;
+    public event Action onBack;
 
     List<TMP_Text> menuItems;
 
@@ -20,6 +24,11 @@ public class MenuController : MonoBehaviour
     {
         menu.SetActive(true);
         UpdateItemSelection();
+    }
+
+    public void CloseMenu()
+    {
+        menu.SetActive(false);
     }
 
     public void HandleUpdate()
@@ -42,6 +51,18 @@ public class MenuController : MonoBehaviour
         if(prevSelection != selectedItem)
         {
             UpdateItemSelection();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            onMenuSelected?.Invoke(selectedItem);
+            CloseMenu();
+        }
+
+        else if (Input.GetKeyDown(KeyCode.X))
+        {
+            onBack?.Invoke();
+            CloseMenu();
         }
  
     }

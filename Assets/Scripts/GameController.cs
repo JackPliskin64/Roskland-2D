@@ -45,6 +45,13 @@ public class GameController : MonoBehaviour
                 state = GameState.FreeRoam;
             }
         };
+
+        menuController.onBack += () =>
+        {
+            state = GameState.FreeRoam;
+        };
+
+        menuController.onMenuSelected += OnMenuSelected;
     }
 
     public void PauseGame(bool pause)
@@ -119,15 +126,6 @@ public class GameController : MonoBehaviour
                 state = GameState.Menu;
             }
 
-            if (Input.GetKeyDown(KeyCode.G))
-            {
-                SavingSystem.instance.Save("saveSlot1");
-            }
-
-            if (Input.GetKeyDown(KeyCode.C))
-            {
-                SavingSystem.instance.Load("saveSlot1");
-            }
         }
 
         else if (state == GameState.Battle)
@@ -151,5 +149,29 @@ public class GameController : MonoBehaviour
     {
         PrevScene = CurrentScene;
         CurrentScene = currScene;
+    }
+
+    void OnMenuSelected(int selectedItem)
+    {
+        if (selectedItem == 0)
+        {
+            //Fighters
+        }
+        if (selectedItem == 1)
+        {
+            //Bag
+        }
+        if (selectedItem == 2)
+        {
+            //Save
+            SavingSystem.instance.Save("saveSlot1");
+        }
+        if (selectedItem == 3)
+        {
+            //Load
+            SavingSystem.instance.Load("saveSlot1");
+        }
+
+        state = GameState.FreeRoam;
     }
 }
