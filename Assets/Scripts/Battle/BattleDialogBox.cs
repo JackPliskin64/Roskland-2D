@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,7 +10,6 @@ public class BattleDialogBox : MonoBehaviour
     [SerializeField] TextMeshProUGUI dialogText;
 
     [SerializeField] int lettersPerSecond;
-    [SerializeField] Color highlightedColor;
 
     [SerializeField] GameObject actionSelector;
     [SerializeField] GameObject moveSelector;
@@ -24,8 +24,11 @@ public class BattleDialogBox : MonoBehaviour
     [SerializeField] TMP_Text yesText;
     [SerializeField] TMP_Text noText;
 
-
-
+    Color highlightedColor;
+    private void Start()
+    {
+        highlightedColor = GlobalSettings.i.HighlightedColor;
+    }
     public void SetDialog(string dialog)
     {
         dialogText.text = dialog;

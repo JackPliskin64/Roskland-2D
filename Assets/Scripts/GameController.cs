@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public enum GameState { FreeRoam, Battle, Dialog, Cutscene, Paused }
+public enum GameState { FreeRoam, Battle, Dialog, Menu, Cutscene, Paused }
 public class GameController : MonoBehaviour
 {
     [SerializeField] PlayerController playerController;
@@ -116,6 +116,7 @@ public class GameController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 menuController.OpenMenu();
+                state = GameState.Menu;
             }
 
             if (Input.GetKeyDown(KeyCode.G))
@@ -137,6 +138,11 @@ public class GameController : MonoBehaviour
         else if (state == GameState.Dialog)
         {
             DialogManager.Instance.HandleUpdate();
+        }
+
+        else if (state == GameState.Menu)
+        {
+            menuController.HandleUpdate();
         }
 
     }
