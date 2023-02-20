@@ -44,11 +44,16 @@ public class PartyScreen : MonoBehaviour
             }
         }
 
+        UpdateMemberSelection(selection);
+
         messageText.text = "Elije a tu combatiente";
     }
 
     public void HandleUpdate(Action onSelected, Action onBack)
     {
+
+        var prevSelection = selection;
+
         if (Input.GetKeyDown(KeyCode.RightArrow))
         { ++selection; }
 
@@ -63,7 +68,10 @@ public class PartyScreen : MonoBehaviour
 
         selection = Mathf.Clamp(selection, 0, fighters.Count - 1);
 
-        UpdateMemberSelection(selection);
+        if(selection != prevSelection)
+        {
+            UpdateMemberSelection(selection);
+        }
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
