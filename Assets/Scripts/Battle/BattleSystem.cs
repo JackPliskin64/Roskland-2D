@@ -23,7 +23,7 @@ public class BattleSystem : MonoBehaviour
     public event Action<bool> OnBattleOver;
 
     BattleState state;
-    BattleState? prevState;
+
     int currentAction;
     int currentMove;
     int currentMember;
@@ -158,6 +158,7 @@ public class BattleSystem : MonoBehaviour
 
     void OpenPartyScreen()
     {
+        partyScreen.CalledFrom = state;
         state = BattleState.PartyScreen;
         partyScreen.SetPartyData(playerParty.Fighters);
         partyScreen.gameObject.SetActive(true);
@@ -587,7 +588,6 @@ public class BattleSystem : MonoBehaviour
             else if (currentAction == 2)
             {
                 //Fighter
-                prevState = state;
                 OpenPartyScreen();
             }
             else if (currentAction == 3)
@@ -669,17 +669,18 @@ public class BattleSystem : MonoBehaviour
 
             partyScreen.gameObject.SetActive(false);
 
-            if (prevState == BattleState.ActionSelection)
+            if (partyScreen.CalledFrom == BattleState.ActionSelection)
             {
-                prevState = null;
                 StartCoroutine(RunTurns(BattleAction.SwitchFighter));
             }
             else
             {
                 state = BattleState.Busy;
-                StartCoroutine(SwitchFighter(selectedMember));
+                bool isTrainerAboutToUse = partyScreen.CalledFrom == BattleState.AboutToUse;
+                StartCoroutine(SwitchFighter(selectedMember, isTrainerAboutToUse));
             }
 
+            partyScreen.CalledFrom = null;
            
         }
         else if (Input.GetKeyDown(KeyCode.X))
@@ -691,15 +692,17 @@ public class BattleSystem : MonoBehaviour
             }
 
             partyScreen.gameObject.SetActive(false);
-            if(prevState == BattleState.AboutToUse)
+
+            if(partyScreen.CalledFrom == BattleState.AboutToUse)
             {
-                prevState = null;
                 StartCoroutine(SendNextTrainerFighter());
             }
             else
             {
                 ActionSelection();
             }
+
+            partyScreen.CalledFrom = null;
         }
     }
     void HandleChoiceBox()
@@ -717,7 +720,6 @@ public class BattleSystem : MonoBehaviour
             if (aboutToUseChoice == true)
             {
                 //Yes option
-                prevState = BattleState.AboutToUse;
                 OpenPartyScreen();
             }
             else
@@ -736,7 +738,7 @@ public class BattleSystem : MonoBehaviour
 
 
 
-    IEnumerator SwitchFighter(Fighter newFighter)
+    IEnumerator SwitchFighter(Fighter newFighter, bool isTrainerAboutToUse=false)
     {
         if (playerUnit.Fighter.HP > 0)
         {
@@ -753,15 +755,15 @@ public class BattleSystem : MonoBehaviour
 
         yield return dialogBox.TypeDialog($"¡Adelante, {newFighter.Base.fighterName}!");
 
-        if(prevState == null)
+        if (isTrainerAboutToUse)
+        {
+            StartCoroutine(SendNextTrainerFighter());
+        }
+        else
         {
             state = BattleState.RunningTurn;
         }
-        else if (prevState == BattleState.AboutToUse)
-        {
-            prevState = null;
-            StartCoroutine(SendNextTrainerFighter());
-        }
+
     }
 
     IEnumerator SendNextTrainerFighter()
