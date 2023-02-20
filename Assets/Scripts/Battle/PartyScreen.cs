@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,10 @@ public class PartyScreen : MonoBehaviour
 
     PartyMemberUI[] memberSlots;
     List<Fighter> fighters;
+
+    int selection = 0;
+
+    public Fighter SelectedMember => fighters[selection];
 
     //Party screen can be called from different states like ActionSelection, RunningTurn, AboutToUse
     public BattleState? CalledFrom { get; set; }
@@ -40,6 +45,34 @@ public class PartyScreen : MonoBehaviour
         }
 
         messageText.text = "Elije a tu combatiente";
+    }
+
+    public void HandleUpdate(Action onSelected, Action onBack)
+    {
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        { ++selection; }
+
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        { --selection; }
+
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        { selection += 2; }
+
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        { selection -= 2; }
+
+        selection = Mathf.Clamp(selection, 0, fighters.Count - 1);
+
+        UpdateMemberSelection(selection);
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            onSelected?.Invoke();
+        }
+        else if (Input.GetKeyDown(KeyCode.X))
+        {
+           onBack?.Invoke();
+        }
     }
 
     public void UpdateMemberSelection(int selectedMember)

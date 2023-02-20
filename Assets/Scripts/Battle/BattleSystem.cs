@@ -26,7 +26,6 @@ public class BattleSystem : MonoBehaviour
 
     int currentAction;
     int currentMove;
-    int currentMember;
     bool aboutToUseChoice = true;
 
     FighterParty playerParty;
@@ -221,7 +220,7 @@ public class BattleSystem : MonoBehaviour
         {
             if (playerAction == BattleAction.SwitchFighter)
             {
-                var selectedFighter = playerParty.Fighters[currentMember];
+                var selectedFighter = partyScreen.SelectedMember;
                 state = BattleState.Busy;
                 yield return SwitchFighter(selectedFighter);
             }
@@ -518,10 +517,12 @@ public class BattleSystem : MonoBehaviour
         {
             HandleMoveSelection();
         }
+
         else if (state == BattleState.PartyScreen)
         {
             HandlePartySelection();
         }
+
         else if (state == BattleState.AboutToUse)
         {
             HandleChoiceBox();
@@ -637,29 +638,13 @@ public class BattleSystem : MonoBehaviour
 
     void HandlePartySelection()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        { ++currentMember; }
-
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        { --currentMember; }
-
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-        { currentMember += 2; }
-
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
-        { currentMember -= 2; }
-
-        currentMember = Mathf.Clamp(currentMember, 0, playerParty.Fighters.Count - 1);
-
-        partyScreen.UpdateMemberSelection(currentMember);
-
-        if (Input.GetKeyDown(KeyCode.Z))
+        Action onSelected = () =>
         {
-            var selectedMember = playerParty.Fighters[currentMember];
-            if (selectedMember.HP <= 0) 
+            var selectedMember = partyScreen.SelectedMember;
+            if (selectedMember.HP <= 0)
             {
                 partyScreen.SetMessageText("No puedes enviar a un combatiente debilitado.");
-                return; 
+                return;
             }
             if (selectedMember == playerUnit.Fighter)
             {
@@ -681,9 +666,9 @@ public class BattleSystem : MonoBehaviour
             }
 
             partyScreen.CalledFrom = null;
-           
-        }
-        else if (Input.GetKeyDown(KeyCode.X))
+        };
+
+        Action onBack = () =>
         {
             if (playerUnit.Fighter.HP <= 0)
             {
@@ -693,7 +678,7 @@ public class BattleSystem : MonoBehaviour
 
             partyScreen.gameObject.SetActive(false);
 
-            if(partyScreen.CalledFrom == BattleState.AboutToUse)
+            if (partyScreen.CalledFrom == BattleState.AboutToUse)
             {
                 StartCoroutine(SendNextTrainerFighter());
             }
@@ -703,7 +688,10 @@ public class BattleSystem : MonoBehaviour
             }
 
             partyScreen.CalledFrom = null;
-        }
+        };
+
+        partyScreen.HandleUpdate(onSelected, onBack);
+
     }
     void HandleChoiceBox()
     {
